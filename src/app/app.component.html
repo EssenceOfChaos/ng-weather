@@ -1,4 +1,65 @@
-<h1>
-  {{title}}
-</h1>
-<router-outlet></router-outlet>
+<!--nav -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">Ng-weather</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="features">Features</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="graph">Comments</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input [(ngModel)]="cityName" name="cityName" class="form-control mr-sm-2" type="text" placeholder="Search city">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="searchCity()" data-loading-text="<i class='fa fa-spinner fa-spin '></i>">Search</button>
+        </form>
+    </div>
+</nav>
+
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <h3 class="card-header">{{cityName | titlecase}}</h3>
+                <div class="block">
+                    <h5 class="card-title">Weather: {{cityWeather}}</h5>
+                    <h6 class="card-subtitle text-muted">Country code: {{cityCountry}} </h6>
+                </div>
+                <img *ngIf="icon != undefined" src="{{weatherIcon + icon + '.png'}}" alt="weather icon" height="100px" width="100px">
+                <div class="block">
+                    <h6 class="card-text">Temperature: {{cityTemp}} ˚F</h6>
+                    Humidity: {{cityHumid}} % <br> Low: {{cityTempMin}} ˚F <br> High: {{cityTempMax}} ˚F
+
+                </div>
+                <div class="card-footer text-muted text-xs-center">
+                    Read the tutorial to make this app.
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-6">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">Created by Frederick John</span>
+        <p class="float-right text-muted">See other projects on <a href="https://github.com/EssenceOfChaos">Github</a>.</p>
+    </div>
+</footer>
